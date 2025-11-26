@@ -15,7 +15,7 @@ yhteys = mysql.connector.connect(
     autocommit=True
 )
 app = Flask(__name__)
-@app.route('/<i>')
+@app.route('/<i>', methods=['GET'])
 
 #Kysymys -funktio, joka asettaa sanakirjaan kysymyksen ja vastaukset
 def kysymysfunktio(i):
@@ -424,9 +424,12 @@ def kysymysfunktio(i):
         "kysymys": kysymys,
         "kysymysteksti": question_text
     }
+    response = jsonify(jsonvast)
+    response.headers.add('Access-Control-Allow-Origin', '*')
+
 
     # Palautetaan funktiosta sanakirja, joka sisältää kysymyksen, vastaukset ja tiedon onko vastaus oikein vai väärin
-    return jsonify(jsonvast)
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=3000)

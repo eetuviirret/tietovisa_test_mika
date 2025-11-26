@@ -1,0 +1,25 @@
+#logo {
+    text-align: center;
+}
+
+#kysymysalue {
+    border: 1px solid #000;
+    text-align: center;
+    padding: 15px;
+    margin: 5px;
+    height: 100px;
+}
+
+#vastausalue {
+    text-align: center;
+}
+
+#vastausalue input {
+    padding: 15px;
+    margin: 5px;
+}
+
+#vastausalue button {
+    padding: 15px;
+    margin: 5px;
+}
