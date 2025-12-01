@@ -431,5 +431,6 @@ def kysymysfunktio(i):
     # Palautetaan funktiosta sanakirja, joka sisältää kysymyksen, vastaukset ja tiedon onko vastaus oikein vai väärin
     return response
 
+
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=3000)

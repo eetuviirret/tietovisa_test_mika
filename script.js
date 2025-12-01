@@ -8,13 +8,19 @@ const game = {
     kysymys: [],
     kierros: 0,
     score: 0,
+    olki1: 0,
+    olki2: 0,
+    olki3: 0,
 
     //Init -funktio käynnistää pelin
     async init(name) {
         //Haetaan kysymys
         this.kysymys = await kysymyshaku(this.kierros);
         //Tallennetaan pelaajan nimi
-        this.player_name = name
+        this.player_name = name;
+        this.olki1 = 1;
+        this.olki2 = 1;
+        this.olki3 = 1;
         //Printataan kysymys
         this.kysymysfunktio();
     },
@@ -42,7 +48,7 @@ const game = {
         const button = document.createElement("button");
 
         button.textContent = this.kysymys[`vastaus${i}`][1];
-        button.classList.add("vastausnappi");
+        button.if = "vastausnappi";
 
         //Event listener jokaiselle napille jos niitä painaa
         button.addEventListener("click", () => {
@@ -53,6 +59,108 @@ const game = {
         //Printataan painike
         vastausalue.appendChild(button);
     }
+
+    //Ajetaan oljenkorsi-funktio
+    this.oljenkorsifunktio()
+
+    },
+
+    //Määritetään oljenkorsi-funktio
+    oljenkorsifunktio() {
+        if (this.olki1 === 1 || this.olki2 === 1 || this.olki3 === 1) {
+            const lifelineArea = document.createElement("div")
+            lifelineArea.id = "lifelinearea";
+
+            const linebreak = document.createElement("br");
+            vastausalue.appendChild(linebreak);
+            vastausalue.appendChild(lifelineArea)
+
+            const lifelineButton = document.createElement("button");
+
+            lifelineButton.textContent = "Lifelines";
+            lifelineButton.id = "oljenkorsinappi";
+
+            lifelineButton.addEventListener("click", () => {
+                //Näytetään lifelinet
+                lifelineArea.removeChild(lifelineButton);
+
+                //Kysy yleisöltä
+                if (this.olki1 === 1) {
+                    const askAudienceButton = document.createElement("button");
+
+                    askAudienceButton.textContent = "Ask the Audience"
+                    askAudienceButton.id = "oljenkorsinappi"
+                    askAudienceButton.value = "olki1"
+
+                    askAudienceButton.addEventListener("click", () => {
+                        //Oljenkorsi käytetty
+                        this.olki1 = 0;
+
+                        lifelineArea.innerHTML = "";
+                        if (this.olki1 === 1 || this.olki2 === 1 || this.olki3 === 1) {
+                            lifelineArea.appendChild(lifelineButton)
+                        }
+
+
+                    });
+
+                    lifelineArea.appendChild(askAudienceButton)
+                }
+
+                //Eliminoi puolet vääristä vastauksista
+                if (this.olki2 === 1) {
+                    const fiftyFiftyButton = document.createElement("button");
+
+                    fiftyFiftyButton.textContent = "50/50"
+                    fiftyFiftyButton.id = "oljenkorsinappi"
+                    fiftyFiftyButton.value = "olki2"
+
+                    fiftyFiftyButton.addEventListener("click", () => {
+                        //Oljenkorsi käytetty
+                        this.olki2 = 0;
+
+                        lifelineArea.innerHTML = "";
+
+                        if (this.olki1 === 1 || this.olki2 === 1 || this.olki3 === 1) {
+                            lifelineArea.appendChild(lifelineButton)
+                        }
+                    });
+
+
+                    lifelineArea.appendChild(fiftyFiftyButton)
+                }
+
+                //Kysy kaverilta
+                if (this.olki3 === 1) {
+                    const callFriendButton = document.createElement("button");
+
+                    callFriendButton.textContent = "Call a Friend"
+                    callFriendButton.id = "oljenkorsinappi"
+                    callFriendButton.value = "olki3"
+
+                    callFriendButton.addEventListener("click", () => {
+                        //Oljenkorsi käytetty
+                        this.olki3 = 0;
+
+                        lifelineArea.innerHTML = "";
+
+                        if (this.olki1 === 1 || this.olki2 === 1 || this.olki3 === 1) {
+                            lifelineArea.appendChild(lifelineButton)
+                        }
+                    });
+
+
+                    lifelineArea.appendChild(callFriendButton)
+                }
+            });
+            //Rivinvaihto
+
+
+            //Printataan oljenkorsinappi
+            lifelineArea.appendChild(lifelineButton);
+
+
+        }
     },
 
     //Vastauksen tarkistus
@@ -90,6 +198,7 @@ async function kysymyshaku(kierros) {
     const response = await fetch(`http://127.0.0.1:3000/${kierros}`);
     return response.json();
 }
+
 
 //Printataan nimikenttä ja aloitusnappi
 vastausalue.innerHTML = "<form id='start_game'><input id='namebox' name='namebox' placeholder='Enter name...' type='text'><input type='submit' value='Start game'></form>";
