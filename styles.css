@@ -86,6 +86,10 @@ body{
     color: rgb(6, 18, 31);
 }
 
+#right_image{}
+
+#game_over_image{}
+
 * {
   box-sizing: border-box;
 }
