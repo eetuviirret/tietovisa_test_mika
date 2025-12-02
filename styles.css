@@ -1,28 +1,59 @@
 #logo {
     text-align: center;
+    font-size: large;
+    font-weight: bolder;
+    font-family: lucida console, courier new;
+    color: coral;
 }
 
+body{
+    background-color: #3f7cc5;
+    background-image: url(gif/private\ plane.jpg);
+}
 #kysymysalue {
-    border: 1px solid #000;
+    border: 10px outset rgb(18, 54, 91);
+    border-radius: 25px;
     text-align: center;
     padding: 15px;
     margin: 5px;
-    height: auto;
+    height: 200px;
+    background-color: rgb(31, 96, 161);
+    font-family: 'Courier New', Courier, monospace;
+    color: coral;
+
 }
 
 #vastausalue {
     text-align: center;
+    border-radius: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    color: coral;
 }
 
 #vastausalue input {
     padding: 15px;
     margin: 5px;
+    border-radius: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(6, 18, 31);
 }
 
 #vastausalue button {
-    padding: 15px;
+    padding: 25px;
     margin: 5px;
+    border-radius: 25px;
+    background-color: white;
+    hover
+    border-radius: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(6, 18, 31);
 }
+
+#vastausalue button:hover {
+    background-color: lightgray;
+    border-radius: 25px;
+}
+
 
 #oljenkorsialue {
 
