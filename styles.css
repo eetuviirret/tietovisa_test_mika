@@ -39,3 +39,7 @@
 #oljenkorsinappi {
 
 }
+
+.hidden {
+    display: none;
+}

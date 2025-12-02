@@ -8,9 +8,9 @@ const game = {
     kysymys: [],
     kierros: 0,
     score: 0,
-    olki1: 0,
-    olki2: 0,
-    olki3: 0,
+    olki1: 1,
+    olki2: 1,
+    olki3: 1,
 
     //Init -funktio käynnistää pelin
     async init(name) {
@@ -18,9 +18,6 @@ const game = {
         this.kysymys = await kysymyshaku(this.kierros);
         //Tallennetaan pelaajan nimi
         this.player_name = name;
-        this.olki1 = 1;
-        this.olki2 = 1;
-        this.olki3 = 1;
         //Printataan kysymys
         this.kysymysfunktio();
     },
@@ -48,7 +45,8 @@ const game = {
         const button = document.createElement("button");
 
         button.textContent = this.kysymys[`vastaus${i}`][1];
-        button.if = "vastausnappi";
+        button.value = this.kysymys[`vastaus${i}`][0]
+        button.id = "vastausnappi";
 
         //Event listener jokaiselle napille jos niitä painaa
         button.addEventListener("click", () => {
@@ -129,13 +127,14 @@ const game = {
                         else {
                             const hintArea = document.createElement("div")
                             hintArea.id = "vihjealue"
-                            hintArea.innerHTML = `The audience has voted:<br><ul><li>A: ${yleiso.A} votes</li><li>B: ${yleiso.B} votes</li><li>C: ${yleiso.C} votes</li><li>A: ${yleiso.D} votes</li></ul>`
+                            hintArea.innerHTML = `The audience has voted:<br><ul><li>A: ${yleiso.A} votes</li><li>B: ${yleiso.B} votes</li><li>C: ${yleiso.C} votes</li><li>D: ${yleiso.D} votes</li></ul>`
 
                             kysymysalue.appendChild(hintArea)
                         }
 
 
                         lifelineArea.innerHTML = "";
+
                         if (this.olki1 === 1 || this.olki2 === 1 || this.olki3 === 1) {
                             lifelineArea.appendChild(lifelineButton)
                         }
@@ -161,6 +160,17 @@ const game = {
                         lifelineArea.innerHTML = "";
 
                         //FIFTY FIFTY KOODI
+                        let piilotettavat = []
+
+                        for (let i = 1; i < 5; i++) {
+                            if (this.kysymys[`vastaus${i}`][2] === 0) {
+                                let selected = document.querySelector(`button[value=${this.kysymys[`vastaus${i}`][0]}]`)
+                                console.log(selected)
+                                piilotettavat.push(selected)
+                            }
+                        }
+
+                        piilotettavat.slice(0, 2).forEach(i => i.classList.add('hidden'));
 
                         //Tarkistetaan onko elementti jo olemassa
                         //Jos on, muokataan sitä
@@ -198,17 +208,34 @@ const game = {
                         this.olki3 = 0;
 
                         //CALL FRIEND KOODI
+                        let kaveri = "";
+                        let errormargin = Math.floor(Math.random() * 100) + 1
+
+                        if (errormargin <= 50) {
+                            for (let i = 1; i < 5; i++) {
+                                if (this.kysymys[`vastaus${i}`][2] === 1) {
+                                    kaveri = this.kysymys[`vastaus${i}`][1]
+                                }
+                            }
+                        }
+                        else {
+                            for (let i = 1; i < 5; i++) {
+                                if (this.kysymys[`vastaus${i}`][2] === 0) {
+                                    kaveri = this.kysymys[`vastaus${i}`][1]
+                                }
+                            }
+                        }
 
                         //Tarkistetaan onko elementti jo olemassa
                         //Jos on, muokataan sitä
                         if (document.getElementById("vihjealue") != null) {
-                          document.getElementById("vihjealue").textContent = "TÄMÄ ON CALL A FRIEND PALAUTUS"
+                          document.getElementById("vihjealue").textContent = `I think the answer is ${kaveri}`
                         }
                         //Jos ei, luodaan se
                         else {
                             const hintArea = document.createElement("div")
                             hintArea.id = "vihjealue"
-                            hintArea.textContent = "TÄMÄ ON CALL A FRIEND PALAUTUS"
+                            hintArea.textContent = `I think the answer is ${kaveri}`
 
                             kysymysalue.appendChild(hintArea)
                         }
@@ -244,7 +271,7 @@ const game = {
 
             //Uusi kierros, jos kierrokset ovat täynnä, lopetetaan peli
             if (this.kierros < 16) {
-                this.init();
+                this.init(this.player_name);
             } else {
                 this.gameover();
             }
