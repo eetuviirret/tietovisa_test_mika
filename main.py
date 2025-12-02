@@ -417,10 +417,10 @@ def kysymysfunktio(i):
         return "winner"
 
     jsonvast = {
-        "vastaus1": ["A", int(vastauslista["vastaus1"][0]), vastauslista["vastaus1"][1]],
-        "vastaus2": ["B", int(vastauslista["vastaus2"][0]), vastauslista["vastaus2"][1]],
-        "vastaus3": ["C", int(vastauslista["vastaus3"][0]), vastauslista["vastaus3"][1]],
-        "vastaus4": ["D", int(vastauslista["vastaus4"][0]), vastauslista["vastaus4"][1]],
+        "vastaus1": ["A", vastauslista["vastaus1"][0], vastauslista["vastaus1"][1]],
+        "vastaus2": ["B", vastauslista["vastaus2"][0], vastauslista["vastaus2"][1]],
+        "vastaus3": ["C", vastauslista["vastaus3"][0], vastauslista["vastaus3"][1]],
+        "vastaus4": ["D", vastauslista["vastaus4"][0], vastauslista["vastaus4"][1]],
         "kysymys": kysymys,
         "kysymysteksti": question_text
     }

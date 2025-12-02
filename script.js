@@ -288,15 +288,21 @@ const game = {
         }
     },
     questionright() {
+        const right_image = document.createElement('img');
+        right_image.src= 'gif/private_plane_right_gif';
+        kysymysalue.appendChild(right_image);
         kysymysalue.textContent = "Right!";
-        kysymysalue.innerHTML += "<br><button class="nextbutton" onclick='game.init(this.player_name)'>Next</button> "
+        kysymysalue.innerHTML += "<br><button class='continue_button' onclick='game.init(this.player_name)'>Next</button> "
         vastausalue.innerHTML = "";
     },
 
     //Printataan lopputulos
     gameover() {
+         const game_over_image = document.createElement('img');
+        game_over_image.src= 'gif/private_plane_game_over_gif';
+        kysymysalue.appendChild(game_over_image);
         kysymysalue.textContent = "GAME OVER! "+this.player_name+`'s Quiz finished! Score: ${this.score}`;
-        kysymysalue.innerHTML += "<br><button onclick='refresh()'>Try again?</button> "
+        kysymysalue.innerHTML += "<br><button class='continue_button' onclick='refresh()'>Try again?</button> "
         vastausalue.innerHTML = "";
     }
 };
