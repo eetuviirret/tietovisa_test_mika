@@ -74,3 +74,14 @@ body{
 .hidden {
     display: none;
 }
+
+.continue_button {
+    padding: 25px;
+    margin: 5px;
+    border-radius: 25px;
+    background-color: white;
+    hover
+    border-radius: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(6, 18, 31);
+}
