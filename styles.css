@@ -20,7 +20,7 @@ header {
 #logo {
     grid-column-start: 2;
     grid-column-end: 3;
-    font-size: clamp(20px, 4vw, 40px);
+
 
 
 }
@@ -101,7 +101,7 @@ footer{
     border-radius: 25px;
     font-family: 'Courier New', Courier, monospace;
     color: rgb(6, 18, 31);
-    font-size: clamp(12px, 2vw, 24px);
+
 }
 
 
@@ -158,4 +158,9 @@ footer{
 
 * {
   box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    #vastausalue button {
+    width: 100%;}
 }
