@@ -1,13 +1,10 @@
 body{
     background-color: #3f7cc5;
     background-image: url(gif/private\ plane.jpg);
-    display: grid;
-    grid-template-columns: 10% 20% 20% 20% 20% 10%;
-    grid-template-rows: auto auto auto auto auto auto auto auto;
 }
 header {
     display: grid;
-    grid-template-columns: 10% 20% 20% 20% 20% 10%;
+    grid-template-columns: 20% 60% 20%;
     grid-template-rows: auto auto auto;
     grid-column-start: 1;
     grid-column-end: 6;
@@ -21,21 +18,24 @@ header {
 
 }
 #logo {
-     grid-column-start: 3;
-    grid-column-end: 5;
+     grid-column-start: 2;
+    grid-column-end: 3;
 
 
 }
 #exit {
-    grid-column-start: 6;
-    grid-column-end: 6;
+    grid-column-start: 3;
+    grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 1;
+    margin: 2%;
+    padding: 5px;
+    border-radius: 10px;
 
 }
 #username {
-    grid-column-start: 6;
-    grid-column-end: 6;
+    grid-column-start: 3;
+    grid-column-end: 4;
     grid-row-start: 2;
     grid-row-end: 2;
 
@@ -46,33 +46,34 @@ header {
     grid-row-start: 2;
     grid-row-end: 2;
 
+
 }
 
 main {
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 3;
-    grid-row-end: 6;
+
 }
 
 #kysymysalue {
+    diplay: grid;
+    grid-template-rows: auto auto;
     border: 10px outset rgb(18, 54, 91);
     border-radius: 25px;
     text-align: center;
-    padding: 15px;
+    padding: 50px;
     margin: 5px;
-    height: 200px;
+    height: auto;
     background-color: rgb(31, 96, 161);
     font-family: 'Courier New', Courier, monospace;
     color: coral;
 
 }
+#reaction_text{
+    grid-row-start: 1;
+    grid-row-end:2;
 
+}
 footer{
-    grid-column-start: 1;
-    grid-column-end: 7;
-    grid-row-start: 7;
-    grid-row-end: 8;
+
 }
 #vastausalue {
     text-align: center;
@@ -85,7 +86,7 @@ footer{
 #vastausalue input {
     padding: 15px;
     margin: 5px;
-    border-radius: 25px;
+    border-radius: 15px;
     font-family: 'Courier New', Courier, monospace;
     color: rgb(6, 18, 31);
 }
@@ -96,7 +97,6 @@ footer{
     margin: 2%;
     border-radius: 25px;
     background-color: white;
-    hover
     border-radius: 25px;
     font-family: 'Courier New', Courier, monospace;
     color: rgb(6, 18, 31);
@@ -142,9 +142,17 @@ footer{
     color: rgb(6, 18, 31);
 }
 
-#right_image{}
+#right_image{
+    width:40%;
+    grid-row-start: 2;
+    grid-row-end:3;
+}
 
-#game_over_image{}
+#game_over_image{
+    width:40%;
+    grid-row-start: 2;
+    grid-row-end:3;
+}
 
 * {
   box-sizing: border-box;

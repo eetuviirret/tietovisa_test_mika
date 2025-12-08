@@ -323,10 +323,12 @@ const game = {
         right_image.src= 'gif/private_plane_right_gif.gif';
         right_image.id="right_image";
 
-        kysymysalue.textContent = "Right!";
+        /*kysymysalue.textContent = "Right!";*/
+        kysymysalue.innerHTML = "";
+        kysymysalue.innerHTML += `<p class="reaction_text">Right!</p>`
         kysymysalue.appendChild(right_image);
-        kysymysalue.innerHTML += `<br><button class='continue_button' onclick='game.init("${this.player_name}")'>Next</button>`
         vastausalue.innerHTML = "";
+        vastausalue.innerHTML += `<br><button class='continue_button' onclick='game.init("${this.player_name}")'>Next</button>`
     },
 
     //Printataan lopputulos
@@ -335,10 +337,13 @@ const game = {
         game_over_image.src= 'gif/private_plane_game_over_gif.gif';
         game_over_image.id="game_over_image";
 
-        kysymysalue.textContent = "GAME OVER! "+this.player_name+`'s Quiz finished! Score: ${this.score}`;
+        kysymysalue.innerHTML = "";
+        /*kysymysalue.innerHTML = "GAME OVER! "+this.player_name+`'s Quiz finished! Score: ${this.score}`;*/
+        kysymysalue.innerHTML += `<p class="reaction_text">GAME OVER! ${this.player_name}'s Quiz finished! Score: ${this.score}</p>`
         kysymysalue.appendChild(game_over_image);
-        kysymysalue.innerHTML += "<br><button class='continue_button' onclick='refresh()'>Try again?</button> "
         vastausalue.innerHTML = "";
+        vastausalue.innerHTML += "<br><button class='continue_button' onclick='refresh()'>Try again?</button> "
+
     }
 };
 
