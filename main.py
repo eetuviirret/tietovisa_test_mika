@@ -3,6 +3,7 @@ import mysql.connector
 import tarina
 from geopy import distance
 from flask import Flask, Response, request, jsonify
+from flask_cors import CORS
 import json
 
 #SQL yhteys
@@ -15,6 +16,8 @@ yhteys = mysql.connector.connect(
     autocommit=True
 )
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/<i>', methods=['GET'])
 
 #Kysymys -funktio, joka asettaa sanakirjaan kysymyksen ja vastaukset

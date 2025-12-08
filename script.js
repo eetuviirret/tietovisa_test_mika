@@ -18,12 +18,13 @@ const game = {
         this.kysymys = await kysymyshaku(this.kierros);
         //Tallennetaan pelaajan nimi
         this.player_name = name;
-        //Printataan kysymysnumero
-        this.printScore();
         //Printataan pelaajan nimi
         this.printUsername();
+        this.exit();
         //Printataan kysymys
         this.kysymysfunktio();
+        //Printataan kysymysnumero
+        this.printScore();
 
     },
     //Printataan pelaajan nimi
@@ -31,7 +32,25 @@ const game = {
         document.getElementById("username").innerHTML = "Username:<br>"  + this.player_name;
     },
     printScore(){
-        document.getElementById("kysymysnro").innerHTML = "Kysymys:" + this.score;
+        document.getElementById("kysymysnro").innerHTML = "NRO/" + this.score;
+    },
+    exit(){
+         const exit_button = document.createElement("button");
+
+         exit_button.textContent = 'EXIT';
+         exit_button.id = "exit";
+
+         //Event listener jokaiselle napille
+        exit_button.addEventListener("click", () => {refresh();
+        });
+        document.getElementById("exit").appendChild(exit_button);
+
+
+
+    },
+
+    money() {
+
     },
 
     kysymysfunktio() {
@@ -57,7 +76,7 @@ const game = {
         const button = document.createElement("button");
 
         button.textContent = this.kysymys[`vastaus${i}`][1];
-        button.value = this.kysymys[`vastaus${i}`][0]
+        button.value = this.kysymys[`vastaus${i}`][0];
         button.id = "vastausnappi";
 
         //Event listener jokaiselle napille jos niitä painaa
@@ -306,7 +325,7 @@ const game = {
 
         kysymysalue.textContent = "Right!";
         kysymysalue.appendChild(right_image);
-        kysymysalue.innerHTML += "<br><button class='continue_button' onclick='game.init(this.player_name)'>Next</button> "
+        kysymysalue.innerHTML += `<br><button class='continue_button' onclick='game.init("${this.player_name}")'>Next</button>`
         vastausalue.innerHTML = "";
     },
 
